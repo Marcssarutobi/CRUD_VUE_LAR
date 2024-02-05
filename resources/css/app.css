@@ -247,3 +247,79 @@ section .details span{
     width: auto;
     height: auto;
 }
+
+/* Vente */
+
+.select_data{
+    width: 50%;
+    background: #fff;
+    padding: 20px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+.select_data .input {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+.select_data .input input{
+    width: 100%;
+    height: 40px;
+    font-size: 20px;
+    border: none;
+    outline: none;
+    padding: 5px;
+}
+.select_data .input i{
+    font-size: 19px;
+}
+.select_data .data{
+    position: absolute;
+    width: 100%;
+    height: 450px;
+    top: 89px;
+    background: #fff;
+    border-radius: 12px;
+    overflow: auto;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+.select_data .data .carte{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    cursor: pointer;
+    transition: all .3s ease-in-out;
+    width: 100%;
+}
+.select_data .data .carte:hover{
+    background: #e9e9e9;
+    border-radius: 5px;
+}
+.select_data .data .carte .info{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+.select_data .data .carte i{
+    font-size: 22px;
+    cursor: pointer;
+}
+.select_data .data .carte .produit{
+    font-size: 22px;
+    font-weight: 600;
+}
+.select_data .data p{
+    font-size: 22px;
+    font-weight: 600;
+}

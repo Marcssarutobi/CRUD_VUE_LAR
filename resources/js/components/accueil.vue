@@ -42,7 +42,7 @@
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                     <li><span class="dropdown-item" @click="GetProduitView(prod.id)" > <i class="fas fa-file-lines" ></i> Afficher</span></li>
                                     <li><span class="dropdown-item" @click="GetProduitEdit(prod.id)" ><i class="fas fa-pen"></i> Modifier</span></li>
-                                    <li><span class="dropdown-item"  > <i class="fas fa-trash" ></i> Supprimer</span></li>
+                                    <li><span class="dropdown-item" @click="GetProdDel(prod.id)" > <i class="fas fa-trash" ></i> Supprimer</span></li>
                                 </ul>
                             </div>
                         </td>
@@ -224,7 +224,6 @@
         </div>
         <!-- Fin Modal Affichage -->
         <!-- Modal Edit -->
-
         <div v-if="EditModal" class="modal fade show" tabindex="-1" style="display: block; background: rgba(0, 0, 0, .5);">
             <div class="modal-dialog modal-dialog-centered modal-xl">
                 <div class="modal-content" data-aos="zoom-in" data-aos-duration="300">
@@ -239,7 +238,7 @@
                         <div class="image mb-3" v-if="getProd.image == null">
 
                             <label for="img">
-                                <input type="file" id="img" hidden @change="handleFileImg">
+                                <input type="file" id="img" hidden @change="handleFileImgUpdate">
                                 <i class="fa fa-cloud-upload-alt"></i>
                                 <p>Télécharger une image</p>
                             </label>
@@ -317,7 +316,6 @@
                 </div>
             </div>
         </div>
-
         <!-- Fin Modal Edit -->
 
 
@@ -439,6 +437,47 @@ export default {
 
             }
         },
+        async handleFileImgUpdate(event){
+            const selectImg = event.target.files[0]
+            if (selectImg && selectImg.type.startsWith('image/')) {
+                const formData = new FormData()
+                formData.append('image',selectImg)
+
+                try {
+                    
+                    const res = await axios.post('/uploadimg',formData,{
+                        onUploadProgress:(ProgressEvent)=>{
+                            const percentCompleted = Math.round((ProgressEvent.loaded * 100) / ProgressEvent.total)
+                            this.percent = percentCompleted
+                            this.names = selectImg.name
+
+                            if (this.percent < 100) {
+                                this.ShowProgress = true
+                            }else if(this.percent && selectImg.name){
+                                this.ShowProgress = false
+                                this.ShowUploded = true
+                            }
+
+                            if (selectImg.size < 1000) {
+                                this.size = selectImg.size + " o";
+                            } else if (selectImg.size >= 1000 && selectImg.size < 1000000) {
+                                this.size = (selectImg.size / 1000).toFixed(2) + " ko";
+                            } else if (selectImg.size >= 1000000) {
+                                this.size = (selectImg.size / 1000000).toFixed(2) + " Mo";
+                            }
+                        }
+                    })
+
+                    if (res.status === 200) {
+                        this.getProd.image = res.data.image_url
+                    }
+
+                } catch (error) {
+                    
+                }
+
+            }
+        },
         async addProduits(){
             const res = await axios.post('/creat_Produits',this.data)
             if (res.status === 200) {
@@ -503,7 +542,7 @@ export default {
         async UpdateProduit(){
             try {
 
-                if (this.getProd.image.trim() == "" || this.getProd.name.trim() == "") {
+                if (!this.getProd.image || this.getProd.image.trim() === "" || !this.getProd.name || this.getProd.name.trim() === "") {
                     Swal.fire({
                         toast: true,
                         position: "top-end",
@@ -535,7 +574,42 @@ export default {
                 }
 
             } catch (error) {
-                
+                console.log(error)
+            }
+        },
+        async GetProdDel(id){
+            const res = await axios.get("/getProduit/" + id)
+            if (res.status === 200) {
+                this.getProd = res.data.produit
+
+                Swal.fire({
+                    title:"Voulez-vous supprimer ce produits ?",
+                    text:"Vous ne pourrez plus revenir en arrière !",
+                    icon: "warning",
+                    showCancelButton: true,
+                    cancelButtonColor: "#d33",
+                    confirmButtonColor: "#3085d6",
+                    confirmButtonText: "Supprimer",
+                    cancelButtonText:"Fermer"
+                }).then(async (result)=>{
+                    if (result.isConfirmed) {
+                        const ress = await axios.post('/delProd',this.getProd)
+                        if (ress.status === 200) {
+                            Swal.fire({
+                                position:"center",
+                                icon:"success",
+                                title: "Suppression effectuer",
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+
+                            const index = this.allProd.findIndex(prod => prod.id === this.getProd.id)
+                            if(index !== -1){
+                                this.allProd.splice(index,1)
+                            }
+                        }
+                    }
+                })
             }
         }
       

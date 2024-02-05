@@ -64,6 +64,14 @@ class ProduitController extends Controller
         ]); 
 
     }
+    public function Produits(){
+
+        $produit = Produit::orderBy('id',"desc")->get();
+        return response()->json([
+            "produits"=>$produit
+        ]); 
+
+    }
 
     public function show($id){
         $produit = Produit::where('id',$id)->first();
@@ -114,6 +122,32 @@ class ProduitController extends Controller
             "produit"=>$produit
         ]);
 
+    }
+
+    public function delProd(Request $request, $hasFullPath = false){
+        //Premièrement effacer le fichier originel du server
+        if(!$hasFullPath){
+            $filePath = public_path() . $request->image;
+        }
+
+        if(file_exists($filePath)){
+            @unlink($filePath);
+        }
+
+        $produit = Produit::where('id',$request->id)->delete();
+
+        return response()->json([
+            "produit"=> $produit
+        ]);
+    }
+
+    public function search($str){
+        if (!empty($str)) {
+            $produit = Produit::where('name','LIKE',"%{$str}%")->orderBy('id','asc')->get();
+            return response()->json([
+                'produit'=>$produit
+            ]);
+        }
     }
 
 

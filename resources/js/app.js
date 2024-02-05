@@ -12,9 +12,28 @@ Aos.init({
 import { createApp } from 'vue';
 import App from './components/App.vue'
 
+import { createRouter,createWebHistory } from 'vue-router';
+
 const app = createApp({})
 
 app.component('app-component', App)
+
+const routes = [
+    {
+        path: '/',
+        component: ()=>import('./components/accueil.vue')
+    },
+    {
+        path: '/vente',
+        component: ()=>import('./components/vente.vue')
+    }
+]
+const router = createRouter({
+    history: createWebHistory(),
+    routes
+})
+
+app.use(router)
 
 
 app.mount('#app')
