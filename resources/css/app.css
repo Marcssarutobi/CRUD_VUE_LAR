@@ -323,3 +323,71 @@ section .details span{
     font-size: 22px;
     font-weight: 600;
 }
+.totale{
+    width: 100%;
+    height: 60px;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border-radius: 12px;
+}
+.totale .prix{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #d6d6d6;
+    width: 20%;
+    height: 50px;
+}
+.totale .prix span{
+    font-size: 22px;
+    font-weight: 700;
+}
+.paniervide{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 15px;
+    height: 250px;
+}
+.paniervide span{
+    font-size: 38px;
+    font-weight: 600;
+    color: #989898;
+}
+.paniervide i{
+    font-size: 45px;
+    color: #989898;
+}
+.button{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+}
+/* Pdf */
+.pdf{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 20px;
+    margin: 0 auto;
+    padding: 20px;
+    max-width: 100%;
+    width: auto;
+    
+}
+.pdf .Totale{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+.pdf .Totale .prix{
+    font-size: 19px;
+    font-weight: 600;
+}

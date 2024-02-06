@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\ProduitController;
+use App\Http\Controllers\VentesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,3 +37,7 @@ Route::post('/delete_image', [ProduitController::class, 'deleteImage']);
 Route::post('/update_Produit', [ProduitController::class, 'updateProduits']);
 Route::post('/delProd',[ProduitController::class, 'delProd']);
 Route::get('/searchPrduits/{str}',[ProduitController::class, 'search']);
+
+
+//Vente
+Route::post('/createVente',[VentesController::class,'addvente']);
