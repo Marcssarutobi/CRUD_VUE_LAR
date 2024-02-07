@@ -15,7 +15,6 @@
                         <li class="nav-item">
                             <router-link class="nav-link fw-bold" to="/vente">Vente de produits</router-link>
                         </li>
-                       
                     </ul>
                 </div>
             </div>

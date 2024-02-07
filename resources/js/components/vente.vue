@@ -220,7 +220,7 @@ export default {
                     showConfirmButton: false,
                     timer: 1500
                 })
-
+                
                 //Générer le pdf
                 const invoiceContent = this.$refs.invoiceContent
                 const option = {
