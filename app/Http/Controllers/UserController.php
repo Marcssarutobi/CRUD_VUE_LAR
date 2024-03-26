@@ -32,7 +32,7 @@ class UserController extends Controller
 
         $utiliateurData = $request->validate([
             "email"=> ["required","email"],
-            "password"=> ["required","string","min:8","max:30"]
+            "password"=> ["required","string","min:3","max:30"]
         ]);
 
         $user = User::Where("email", $utiliateurData["email"])->first();

@@ -68,8 +68,7 @@
 <script>
 import axios from 'axios';
 import Swal from 'sweetalert2'
-import { useRouter } from 'vue-router'
-const router = useRouter()
+
 export default {
     mounted(){
         const sign_in_btn = document.querySelector('#sign-in-btn')
@@ -101,7 +100,8 @@ export default {
             data_connexion:{
                 email:'',
                 password:''
-            }
+            },
+            loginUser:{}
         }
     },
     methods:{
@@ -152,7 +152,31 @@ export default {
                 
                 if (res.status === 200) {
                     localStorage.setItem('token',res.data.Token)
-                    router.push("/")
+                    this.loginUser = res.data.User
+
+                    Swal.fire({
+                        toast: true,
+                        position: "top-end",
+                        title: "Connexion Réussie",
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        icon: "success"
+                    })
+                    this.data_connexion.email = ""
+                    this.data_connexion.password = ""
+
+                    console.log(this.$myGlobalVar)
+
+                    if (this.$myGlobalVar) {
+                        const redirectUrl = this.$myGlobalVar
+                        this.$myGlobalVar = ''
+                        console.log(this.$myGlobalVar)
+                    }else{
+                        this.$router.push('/');
+                    }
+
+                    
                 }
 
             } catch (error) {
