@@ -16,7 +16,14 @@
                             <router-link class="nav-link fw-bold" to="/vente">Vente de produits</router-link>
                         </li>
                         <li class="nav-item">
-                            <button class="btn btn-danger" @click="Logout">Deconnexion</button>
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                    {{LoginUser.name}}
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <li><span class="dropdown-item" @click="Logout">Deconnexion</span></li>
+                                </ul>
+                            </div>
                         </li>
                     </ul>
                 </div>
@@ -40,6 +47,11 @@ export default {
             return this.$route.path !== '/login'
         }
     },
+    data(){
+        return {
+            LoginUser:{}
+        }
+    },
     methods:{
         async Logout(){
             try {
@@ -54,6 +66,12 @@ export default {
             } catch (error) {
                 console.error(error)
             }
+        }
+    },
+    async created(){
+        const res = await axios.get('/enLigne')
+        if (res.status === 200) {
+            this.LoginUser = res.data.user
         }
     }
 }

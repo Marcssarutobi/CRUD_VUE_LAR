@@ -168,6 +168,8 @@ export default {
 
                     this.$router.push('/');
 
+                    console.log(this.loginUser)
+
                     
                 }
 

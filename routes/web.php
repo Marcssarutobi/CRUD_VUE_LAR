@@ -46,5 +46,6 @@ Route::post('/createVente',[VentesController::class,'addvente']);
 //Connexion et Inscription
 Route::post('/inscription', [UserController::class, 'inscription']);
 Route::post('/connexion', [UserController::class, 'connexion']);
+Route::get('/enLigne', [UserController::class, 'enLigne']);
 Route::post('/deconnexion', [UserController::class, 'deconnexion']);
 

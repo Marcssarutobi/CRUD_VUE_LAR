@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -37,30 +38,56 @@ class UserController extends Controller
 
         $user = User::Where("email", $utiliateurData["email"])->first();
         
-        if ($user) {
-            if (Hash::check($utiliateurData["password"],$user->password)) {
+        if (Auth::attempt($utiliateurData)) { // Nouvelle manière de vérification des champs
 
-                $token = $user->createToken("CLE_SECRETE")->plainTextToken;
-                
-                return response()->json([
-                    "User" => $user,
-                    "Token" => $token
-                ],200);
+            $token = $user->createToken("CLE_SECRETE")->plainTextToken;
+            return response()->json([
+                "User" => $user,
+                "Token" => $token      
+            ],200);
 
-            }else{
-                return response()->json([
-                    "message"=> "Mots de passe inccorect"
-                ],401);
-            }
         }else{
             return response()->json([
-                "message"=> "L'adresse email n'est pas valide"
+                "message"=> "Adresse email ou mot de passe incorrect"
             ],401);
         }
+
+        /* $user = User::Where("email", $utiliateurData["email"])->first();
+        
+         if ($user) {
+             if (Hash::check($utiliateurData["password"],$user->password)) {
+
+                 $token = $user->createToken("CLE_SECRETE")->plainTextToken;
+                
+                 return response()->json([
+                     "User" => $user,
+                     "Token" => $token
+                 ],200);
+
+             }else{
+                 return response()->json([
+                     "message"=> "Mots de passe inccorect"
+                 ],401);
+             }
+         }else{
+             return response()->json([
+                 "message"=> "L'adresse email n'est pas valide"
+             ],401);
+         }*/
         
 
 
 
+    }
+
+    public function enLigne(){
+        $user = Auth::user();
+        
+        if ($user) {
+            return response()->json([
+                'user' => $user
+            ]);
+        }
     }
 
     public function deconnexion(Request $request){
