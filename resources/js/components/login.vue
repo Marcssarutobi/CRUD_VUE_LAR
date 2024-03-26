@@ -5,7 +5,7 @@
 
         <div class="sigin-signup">
 
-            <form class="sign-in-form">
+            <form class="sign-in-form" @submit.prevent="Connexion">
                 <h2 class="title">Sign In</h2>
                 <div class="input-field">
                     <i class='fas fa-user'></i>
@@ -15,12 +15,12 @@
                     <i class='fas fa-lock'></i>
                     <input type="password" placeholder="Password" v-model="data_connexion.password">
                 </div>
-                <input type="submit" value="Login" @click="Connexion" class="btns">
+                <input type="submit" value="Login" class="btns">
 
                 <p class="account-text">Don't have an account ? <a href="#" id="sign-up-btn2">Sign up</a></p>
             </form>
 
-            <form class="sign-up-form">
+            <form class="sign-up-form" @submit.prevent="Inscription">
                 <h2 class="title">Sign Up</h2>
                 <div class="input-field">
                     <i class='fas fa-user'></i>
@@ -34,7 +34,7 @@
                     <i class='fas fa-lock'></i>
                     <input type="password" placeholder="Password" v-model="data_inscription.password" >
                 </div>
-                <input type="submit" value="Sign Up" @click="Inscription" class="btns">
+                <input type="submit" value="Sign Up" class="btns">
 
                 <p class="account-text">Already have an account ? <a href="#" id="sign-in-btn2">Sign in</a></p>
             </form>
@@ -166,15 +166,7 @@ export default {
                     this.data_connexion.email = ""
                     this.data_connexion.password = ""
 
-                    console.log(this.$myGlobalVar)
-
-                    if (this.$myGlobalVar) {
-                        const redirectUrl = this.$myGlobalVar
-                        this.$myGlobalVar = ''
-                        console.log(this.$myGlobalVar)
-                    }else{
-                        this.$router.push('/');
-                    }
+                    this.$router.push('/');
 
                     
                 }
