@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\ProduitController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\VentesController;
 use Illuminate\Support\Facades\Route;
 
@@ -41,3 +42,9 @@ Route::get('/searchPrduits/{str}',[ProduitController::class, 'search']);
 
 //Vente
 Route::post('/createVente',[VentesController::class,'addvente']);
+
+//Connexion et Inscription
+Route::post('/inscription', [UserController::class, 'inscription']);
+Route::post('/connexion', [UserController::class, 'connexion']);
+Route::post('/deconnexion', [UserController::class, 'deconnexion']);
+

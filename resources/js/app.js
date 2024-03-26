@@ -21,17 +21,44 @@ app.component('app-component', App)
 const routes = [
     {
         path: '/',
-        component: ()=>import('./components/accueil.vue')
+        component: ()=>import('./components/accueil.vue'),
+        meta: { requiresAuth: true }
     },
     {
         path: '/vente',
-        component: ()=>import('./components/vente.vue')
+        component: ()=>import('./components/vente.vue'),
+        meta: { requiresAuth: true }
+    },
+    {
+        path: '/login',
+        component: ()=>import('./components/login.vue')
     }
 ]
 const router = createRouter({
     history: createWebHashHistory(),
     routes
 })
+
+//Pour la connexion
+function requireAuth(to, from, next){
+    const isAuthenticated = localStorage.getItem('token')
+    if (isAuthenticated) {
+        next();
+    }else{
+        next('/login')
+    }
+}
+
+router.beforeEach((to, from, next)=>{
+    if (to.meta.requiresAuth) {
+        requireAuth(to, from, next);
+    }else{
+        next()
+    }
+})
+//Fin pour la connexion
+
+
 
 app.use(router)
 
