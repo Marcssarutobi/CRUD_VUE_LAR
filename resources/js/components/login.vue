@@ -231,7 +231,7 @@ form{
     flex-direction: column;
     width: 40%;
     min-width: 238px;
-    padding: 0 10px;
+    padding: 0 10px;  
 }
 form.sign-in-form{
     opacity: 1;
@@ -257,12 +257,17 @@ form.sign-up-form{
     border-radius: 50px;
     display: flex;
     align-items: center;
+    overflow: hidden;
 }
 .input-field i{
     flex: 1;
     text-align: center;
     color: #fff;
     font-size: 18px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .input-field input{
     flex: 5;
@@ -271,9 +276,9 @@ form.sign-up-form{
     border: none;
     outline: none;
     width: 100%;
-    height: 100%;
     font-size: 18px;
     font-weight: 600;
+    height: 100%;
 }
 .btns{
     width: 150px;
@@ -324,8 +329,14 @@ form.sign-up-form{
     padding: 10px 0;
 }
 
+.left-panel{
+    transform: translateX(-200%);
+}
 .left-panel .content{
     transform: translateX(-200%);
+}
+.right-panel{
+    transform: translateX(0);
 }
 .right-panel .content{
     transform: translateX(0);
@@ -338,8 +349,14 @@ form.sign-up-form{
 .main.sign-up-mode::before{
     transform: translateX(0);
 }
+.main.sign-up-mode .right-panel{
+    transform: translateX(200%);
+}
 .main.sign-up-mode .right-panel .content{
     transform: translateX(200%);
+}
+.main.sign-up-mode .left-panel{
+    transform: translateX(0);
 }
 .main.sign-up-mode .left-panel .content{
     transform: translateX(0);
