@@ -91,9 +91,10 @@ class UserController extends Controller
     }
 
     public function deconnexion(Request $request){
-        $user = auth()->user();
+        $user = Auth::user();
         
         if ($user) {
+            Auth::logout();
             $user->tokens->each(function($token){
                 $token->delete();
             });

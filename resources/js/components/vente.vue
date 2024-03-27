@@ -168,6 +168,7 @@ export default {
 
                 }
                 this.select =false
+                this.search = ""
                 this.AllProduits()
             }
         },
