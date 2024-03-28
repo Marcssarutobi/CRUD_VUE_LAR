@@ -101,7 +101,7 @@ export default {
                 email:'',
                 password:''
             },
-            loginUser:{}
+            loginUser:{},
         }
     },
     methods:{
@@ -163,10 +163,13 @@ export default {
                         timerProgressBar: true,
                         icon: "success"
                     })
+
+                    this.$router.push('/');
+
                     this.data_connexion.email = ""
                     this.data_connexion.password = ""
 
-                    this.$router.push('/');
+                    
 
                     console.log(this.loginUser)
 
@@ -195,7 +198,7 @@ export default {
     position: relative;
     width: 70vw;
     height: 80vh;
-    background: #1d1b31;
+    background: #fff;
     border-radius: 20px;
     box-shadow: 0 0 28px rgba(0, 0, 0, .25),
                 0 0 10px rgba(0, 0, 0, .22);
@@ -208,7 +211,7 @@ export default {
     left: -50%;
     width: 100%;
     height: 100%;
-    background: #11101d;
+    background: #e1e1e1;
     z-index: 6;
     transform: translateX(100%);
     transition: 1s ease-in-out;
@@ -245,13 +248,14 @@ form.sign-up-form{
 }
 .title{
     font-size: 35px;
-    color: #fff;
+    color: #11101d;
     margin-bottom: 10px;
+    font-weight: 600;
 }
 .input-field{
     width: 100%;
     height: 50px;
-    background: #11101d;
+    background: #e1e1e1;
     margin: 10px 0;
     border: none;
     border-radius: 50px;
@@ -262,7 +266,7 @@ form.sign-up-form{
 .input-field i{
     flex: 1;
     text-align: center;
-    color: #fff;
+    color: #11101d;
     font-size: 18px;
     height: 100%;
     display: flex;
@@ -272,7 +276,7 @@ form.sign-up-form{
 .input-field input{
     flex: 5;
     background: transparent;
-    color: #fff;
+    color: #11101d;
     border: none;
     outline: none;
     width: 100%;
@@ -317,7 +321,7 @@ form.sign-up-form{
     padding: 0 10px;
 }
 .content{
-    color: #fff;
+    color: #11101d;
     transition: 1.1s ease-in-out;
     transition-delay: 0.5s;
 }
