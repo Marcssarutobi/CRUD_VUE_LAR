@@ -1,0 +1,79 @@
+{
+  "_html2canvas-3b2bafce.js": {
+    "file": "assets/html2canvas-3b2bafce.js",
+    "imports": [
+      "resources/js/app.js",
+      "_vente-0aebf16c.js"
+    ],
+    "isDynamicEntry": true
+  },
+  "_vente-0aebf16c.js": {
+    "css": [
+      "assets/vente-6b9660e0.css"
+    ],
+    "dynamicImports": [
+      "_html2canvas-3b2bafce.js",
+      "node_modules/dompurify/dist/purify.es.js",
+      "node_modules/canvg/lib/index.es.js"
+    ],
+    "file": "assets/vente-0aebf16c.js",
+    "imports": [
+      "resources/js/app.js"
+    ],
+    "isDynamicEntry": true
+  },
+  "node_modules/canvg/lib/index.es.js": {
+    "file": "assets/index.es-279245c2.js",
+    "imports": [
+      "resources/js/app.js",
+      "_vente-0aebf16c.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "node_modules/canvg/lib/index.es.js"
+  },
+  "node_modules/dompurify/dist/purify.es.js": {
+    "file": "assets/purify.es-cf254a40.js",
+    "isDynamicEntry": true,
+    "src": "node_modules/dompurify/dist/purify.es.js"
+  },
+  "resources/css/app.css": {
+    "file": "assets/app-0fc661af.css",
+    "isEntry": true,
+    "src": "resources/css/app.css"
+  },
+  "resources/js/app.css": {
+    "file": "assets/app-73168167.css",
+    "src": "resources/js/app.css"
+  },
+  "resources/js/app.js": {
+    "css": [
+      "assets/app-73168167.css"
+    ],
+    "dynamicImports": [
+      "_vente-0aebf16c.js",
+      "resources/js/components/login.vue"
+    ],
+    "file": "assets/app-f54bbce1.js",
+    "isEntry": true,
+    "src": "resources/js/app.js"
+  },
+  "resources/js/components/login.css": {
+    "file": "assets/login-12437828.css",
+    "src": "resources/js/components/login.css"
+  },
+  "resources/js/components/login.vue": {
+    "css": [
+      "assets/login-12437828.css"
+    ],
+    "file": "assets/login-5803d98c.js",
+    "imports": [
+      "resources/js/app.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/components/login.vue"
+  },
+  "vente.css": {
+    "file": "assets/vente-6b9660e0.css",
+    "src": "vente.css"
+  }
+}
